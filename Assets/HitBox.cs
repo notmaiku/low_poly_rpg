@@ -15,7 +15,7 @@ public class HitBox : MonoBehaviour
     bool m_Started;
     public LayerMask m_LayerMask;
     private Animator anim;
-
+    private const int magnitude=2000;
     void Start()
     {
         //Use this to ensure that the Gizmos are being drawn when in Play Mode.
@@ -34,17 +34,18 @@ public class HitBox : MonoBehaviour
         //Use the OverlapBox to detect if there are any other colliders within this box area.
         //Use the GameObject's centre, half the size (as a radius) and rotation. This creates an invisible box around your GameObject.
         Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity, m_LayerMask);
-        int i = 0;
         //Check when there is a new collider coming into contact with the box
-        while (i < hitColliders.Length)
+        for (int i=0; i < hitColliders.Length; i++)
         {
             //Output all of the collider names
             Debug.Log("Hit : " + hitColliders[i].name + i);
             //Increase the number of Colliders in the array
             EnemyController enemy = hitColliders[i].GetComponent("EnemyController") as EnemyController;
             enemy.HP -= 25;
+            Vector3 force=hitColliders[i].transform.position-gameObject.transform.position;
+            force.y=0f;
+            hitColliders[i].GetComponent<Rigidbody>().AddForce(force*magnitude);
             print(enemy.HP);
-            i++;
         }
     }
 
