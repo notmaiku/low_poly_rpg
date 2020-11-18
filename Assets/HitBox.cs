@@ -14,16 +14,19 @@ public class HitBox : MonoBehaviour
 
     bool m_Started;
     public LayerMask m_LayerMask;
+    private Animator anim;
 
     void Start()
     {
         //Use this to ensure that the Gizmos are being drawn when in Play Mode.
         m_Started = true;
+        anim=GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
-        MyCollisions();
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            MyCollisions();
     }
 
     void MyCollisions()

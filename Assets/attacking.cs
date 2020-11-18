@@ -10,14 +10,17 @@ public class attacking : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
-
+private IEnumerator attack()
+{
+    anim.SetBool("Attack", true);
+    yield return new WaitForSeconds(1);
+    anim.SetBool("Attack", false);
+}
     // Update is called once per frame
     void Update()
     {
         if(Input.GetButtonDown("Fire1")){
-            anim.SetBool("Attack", true);
-        }else if(Input.GetButtonUp("Fire1")){
-            anim.SetBool("Attack", false);
+            StartCoroutine(attack());
         }
     }
 }
