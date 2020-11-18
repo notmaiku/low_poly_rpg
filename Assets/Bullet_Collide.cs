@@ -19,16 +19,15 @@ public class Bullet_Collide : MonoBehaviour {
     {
         exploded=true;
         Vector3 explosionPos = transform.position;
-        Rigidbody bomb = Instantiate(explosion, transform.position, transform.rotation);
+        Rigidbody bomb = Instantiate(explosion, explosionPos, transform.rotation);
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
         foreach (Collider hit in colliders) {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
             try {
-                EnemyController enemy = collision.collider.GetComponent("EnemyController") as EnemyController;
+                EnemyController enemy = hit.GetComponent("EnemyController") as EnemyController;
                 enemy.HP -= 50;
                 print(enemy.HP);
             } catch (System.NullReferenceException e) {
-            print("ERROR: Bullet collided with a non enemy - " + e);
+                print("ERROR: Bullet collided with a non enemy - " + e);
             }
         }
     }
