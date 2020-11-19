@@ -79,3 +79,6 @@ crashlytics-build.properties
 
 # Local History for Visual Studio Code
 .history/
+Packages/manifest.json
+Packages/packages-lock.json
+ProjectSettings/ProjectVersion.txt
