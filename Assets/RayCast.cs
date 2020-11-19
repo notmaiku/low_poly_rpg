@@ -20,13 +20,13 @@ public class RayCast : MonoBehaviour
   }
 
   public void shoot(Vector3 origin, Vector3 direction, float maxDistance){
-    print("shoot a nigga");
+    print("shoot a guy");
     Ray ray = new Ray(origin, direction);
     bool result = Physics.Raycast(ray, out RaycastHit raycastHit, maxDistance);
     Debug.DrawRay(origin , direction * 5, Color.red);
 
     if(result){
-      print("shot a nigga");
+      print("shot a guy");
         // raycastHit.collider.GetComponent<Renderer>().material.color = tintColor;
         // Destroy(raycastHit.collider.GetComponent<Renderer>());
         EnemyController enemy = raycastHit.collider.GetComponent("EnemyController") as EnemyController;
