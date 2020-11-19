@@ -3,18 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ThirdPersonMovementScript : MonoBehaviour {
+
     public CharacterController controller;
+
     public float speed = 6f;
+    public float jumpHeight = 1f;
+    public float gravity = -9.81f;
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+
     public Transform cam;
+
+    Vector3 velocity;
+
     // Update is called once per frame
     void Update() {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if(direction.magnitude >= 0.1f){
+        addGravity();
+
+        if (Input.GetKeyDown("space") && controller.isGrounded)
+        {
+            jump();
+        }
+
+        // Adding turning and x/z axis movement
+        if (direction.magnitude >= 0.1f){
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
@@ -26,16 +42,18 @@ public class ThirdPersonMovementScript : MonoBehaviour {
             }
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
-        if(Input.GetKeyDown("space")){
-            jump();
-        }
-        gravity();
+
+        //Applying the velocity vector to the controller
+        controller.Move(velocity * Time.deltaTime);
     }
     public void jump(){
-        controller.Move(Vector3.up * 100f * Time.deltaTime);
+        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
     }
 
-    public void gravity(){
-        controller.Move(Vector3.down * 4.5f * Time.deltaTime);
+    public void addGravity(){
+        velocity.y += gravity * Time.deltaTime;
+        //Capping the falling rate to the velocity of gravity
+        if (velocity.y <= gravity)
+            velocity.y = gravity;
     }
 }
