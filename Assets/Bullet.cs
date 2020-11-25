@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour {
 
             // Give the cloned object an initial velocity along the current
             // object's Z axis
-            clone.velocity = transform.TransformDirection(Vector3.forward * 10);
+            // clone.velocity = transform.TransformDirection(Vector3.forward * 10, Space.World);
         }
     }
     
