@@ -16,36 +16,38 @@ public class HitBox : MonoBehaviour
     public LayerMask m_LayerMask;
     private Animator anim;
     private const int magnitude=2000;
+    public GameObject player;
+    Collider coll;
+    public float hitTime = 0;
     void Start()
     {
         //Use this to ensure that the Gizmos are being drawn when in Play Mode.
         m_Started = true;
-        anim=GetComponent<Animator>();
+        player = GameObject.FindWithTag("Player");
+        anim=player.GetComponent<Animator>();
+        coll = GetComponent<Collider>();
+        coll.isTrigger = false;
     }
 
-    void FixedUpdate()
-    {
-        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-            MyCollisions();
+    void Update(){
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") &&  this.hitTime < anim.GetCurrentAnimatorStateInfo(0).length){
+            coll.isTrigger = true;
+        }
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("None")){
+            this.hitTime = 0;
+        }
     }
-
-    void MyCollisions()
-    {
-        //Use the OverlapBox to detect if there are any other colliders within this box area.
-        //Use the GameObject's centre, half the size (as a radius) and rotation. This creates an invisible box around your GameObject.
-        Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity, m_LayerMask);
-        //Check when there is a new collider coming into contact with the box
-        for (int i=0; i < hitColliders.Length; i++)
-        {
-            //Output all of the collider names
-            Debug.Log("Hit : " + hitColliders[i].name + i);
-            //Increase the number of Colliders in the array
-            EnemyController enemy = hitColliders[i].GetComponent("EnemyController") as EnemyController;
+    void OnTriggerEnter(Collider other) {
+        coll.isTrigger = false;
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")){
+        try {
+            this.hitTime += 1;
+            EnemyController enemy = other.GetComponent("EnemyController") as EnemyController;
             enemy.HP -= 25;
-            Vector3 force=hitColliders[i].transform.position-gameObject.transform.position;
-            force.y=0f;
-            hitColliders[i].GetComponent<Rigidbody>().AddForce(force*magnitude);
             print(enemy.HP);
+        } catch (System.NullReferenceException e) {
+            print("ERROR: Bullet collided with a non enemy - " + e);
+        }
         }
     }
 

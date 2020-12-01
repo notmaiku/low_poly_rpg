@@ -11,13 +11,22 @@ public class ThirdPersonMovementScript : MonoBehaviour {
     public float gravity = -9.81f;
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+    Animator anim;
 
     public Transform cam;
 
     Vector3 velocity;
 
     // Update is called once per frame
+
+    void  Start(){
+        anim = GetComponent<Animator>();
+    }
     void Update() {
+        // if (Input.GetKeyDown("w"))
+        //     anim.SetBool("Moving", true);
+        // if(Input.GetKeyUp("w"))
+        //     anim.SetBool("Moving", false);
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;

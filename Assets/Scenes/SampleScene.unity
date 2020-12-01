@@ -145,7 +145,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 261727936}
-  m_LocalRotation: {x: 0.212012, y: 0.000000008407608, z: -0.0000000018239404, w: 0.97726715}
+  m_LocalRotation: {x: 0.212012, y: -0.000000008407624, z: 0.0000000018240189, w: 0.97726715}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -673,7 +673,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.21201204, y: 0.00000001681523, z: -0.00000000364796, w: 0.9772671}
+  m_LocalRotation: {x: 0.21201204, y: -0.00000001681523, z: 0.00000000364796, w: 0.9772671}
   m_LocalPosition: {x: 0, y: 6.462, z: -9.963}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1771,7 +1771,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6206304589460605152}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &957566081866090983
 GameObject:
@@ -2087,7 +2087,7 @@ Transform:
   m_LocalScale: {x: -0.0559199, y: -0.0601293, z: -0.21282046}
   m_Children: []
   m_Father: {fileID: 6206304589460605152}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1872974635385303441
 Transform:
@@ -3177,6 +3177,7 @@ GameObject:
   - component: {fileID: 2402173357088808849}
   - component: {fileID: 5426858771657095299}
   - component: {fileID: 5426858771657095300}
+  - component: {fileID: 5426858771657095301}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -3199,6 +3200,8 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 256
+  player: {fileID: 0}
+  hitTime: 0
 --- !u!95 &5426858771657095300
 Animator:
   serializedVersion: 3
@@ -3218,6 +3221,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &5426858771657095301
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5426858771657095298}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.020000013, y: 0.020000048, z: 0.22131976}
+  m_Center: {x: 0.0000000055376583, y: -0.000000107958314, z: 0.10065989}
 --- !u!4 &5498674746748044564
 Transform:
   m_ObjectHideFlags: 0
@@ -3296,7 +3312,7 @@ Transform:
   m_LocalScale: {x: -0.19053575, y: -0.07658189, z: -0.32375482}
   m_Children: []
   m_Father: {fileID: 6206304589460605152}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5834948958892529259
 MeshFilter:
@@ -3438,10 +3454,10 @@ Transform:
   m_LocalPosition: {x: -9.213494e-11, y: 0.014739039, z: -0.0000000017441723}
   m_LocalScale: {x: 0.99999994, y: 0.9999998, z: 1}
   m_Children:
-  - {fileID: 6264417259515080475}
   - {fileID: 817285816925805350}
   - {fileID: 5766385555541926301}
   - {fileID: 1778382579493155684}
+  - {fileID: 6264417259515080475}
   m_Father: {fileID: 4268982859957268335}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3452,14 +3468,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6747657651851146657}
-  m_LocalRotation: {x: 0.33114117, y: -0.6247764, z: -0.6247766, w: 0.33114055}
-  m_LocalPosition: {x: 0.00077462895, y: 0.0036204231, z: 0.0054905964}
-  m_LocalScale: {x: 0.0009999981, y: 0.001, z: 0.0009999996}
+  m_LocalRotation: {x: 0.33114114, y: -0.6247764, z: -0.62477666, w: 0.33114055}
+  m_LocalPosition: {x: 0.0007746309, y: 0.0036204304, z: 0.0054905964}
+  m_LocalScale: {x: 0.0009999981, y: 0.0009999998, z: 0.0009999996}
   m_Children:
   - {fileID: 5967886533636135344}
   - {fileID: 7106127005871371390}
   m_Father: {fileID: 6206304589460605152}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -145.84799, y: 89.99999, z: 89.99999}
 --- !u!23 &6285323643765641347
 MeshRenderer:
@@ -3853,7 +3869,7 @@ GameObject:
   - component: {fileID: 7427329491018154202}
   m_Layer: 0
   m_Name: LowPolyGirl
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

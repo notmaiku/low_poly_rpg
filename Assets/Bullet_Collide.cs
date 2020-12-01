@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet_Collide : MonoBehaviour {
-//   public Rigidbody explosion;
-//   public float radius = 100.0F;
-//   public float power = 100.0F;
-//   private bool exploded=false;
+  // public Rigidbody explosion;
+  // public float radius = 100.0F;
+  // public float power = 100.0F;
+  // private bool exploded=false;
+
   void OnCollisionEnter(Collision collision) {
     try {
         EnemyController enemy = collision.collider.GetComponent("EnemyController") as EnemyController;
