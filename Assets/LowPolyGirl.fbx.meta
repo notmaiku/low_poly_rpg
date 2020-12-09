@@ -11,7 +11,7 @@ ModelImporter:
     second: Attack
   - first:
       74: -1610863427237328480
-    second: Walking
+    second: Moving
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -99,7 +99,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Walking
+      name: Moving
       takeName: Armature|ArmatureAction
       internalID: 0
       firstFrame: 60
